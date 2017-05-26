@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		ul,
+		li{
+			list-style: none;
+		}
+
+		clearfix:after{
+			content: "";
+			clear: both;
+			display: block;
+		}
+
+		ul{
+			width: 700px;
+			margin: 0 auto;
+		}
+
+		li{
+			width: 300px;
+			height: 300px;
+			border: 1px solid #ccc;
+			margin: 10px 0 0 10px;
+			float: left;
+		}
+
+		img{
+			width: 300px;
+			height: 300px;
+		}
+	</style>
+</head>
+
+<body>
+	<ul class="clearfix">
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://i1.piimg.com/588926/bc4e69759f17c67f.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://i1.piimg.com/588926/62a3b8bcc30aea31.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://i1.piimg.com/588926/a6a4a8eb4314d9f4.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://i4.buimg.com/588926/e8161bd356335fcb.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://i1.piimg.com/588926/d4c45d47e015286a.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://i1.piimg.com/588926/ea01039ae8df5862.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://cdn.duitang.com/uploads/item/201512/10/20151210135838_Y2SvK.thumb.224_0.jpeg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://img2.touxiang.cn/file/20160330/0bd5d42de31d5407ec4c4b1ee5561aa1.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://up.qqjia.com/z/24/tu29425_1.png" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://k2.jsqq.net/uploads/allimg/1704/7_170422152818_15.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://k2.jsqq.net/uploads/allimg/1704/7_170422152818_10.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://www.9coc.com/uploads/141121/1-1411211G3525I.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://scimg.jb51.net/touxiang/201705/2017050421261322.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://www.qq745.com/uploads/allimg/150114/1-150114153449.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://www.itouxiang.net/uploads/allimg/20151219/140834916540070.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://www.jianfei.com/uploads/allimg/110906/1610494643-5.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://image.tianjimedia.com/uploadImages/2015/186/52/4IOEZ7F63G3G.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://img.51ztzj.com/upload/image/20140911/dn201409104004_670x419.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://p.3761.com/pic/74721372211625.jpg" alt=""></li>
+		<li><img src="http://i1.piimg.com/588926/e9cfc6a1e68a1ed1.gif" data-src="http://img.51ztzj.com/upload/image/20150717/dn201507166005_670x419.jpg" alt=""></li>
+	</ul>
+
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+	<script>
+		var $img = $("img");
+		// var runTimes = 0; // 图片懒加载代码执行情况的测试
+
+		// 首次打开页面时，已经处于 window 中的图片，需要立即加载
+		lazyLoad($img);
+
+		// 窗口滚动事件监听，出现在窗口的图片开始懒加载
+		$(window).on("scroll", function(){
+			lazyLoad($img);
+		});
+		//$(window).on("scroll", lazyLoad($img));
+
+
+		function lazyLoad($node){
+			$node.not(".show").each(function(){
+				if( isVisable($(this)) ){
+					showImg($(this));
+					// runTimes++;
+					// console.log(runTimes)
+				}
+			});
+		}
+
+		function isVisable($node){
+			var winHeight = $(window).height();
+			var docScroll = $(document).scrollTop();
+			var $nodeOffset = $node.offset().top;
+			var $nodeHeight = $node.height();
+			//console.log(winHeight); console.log(docScroll);	console.log($nodeOffset); console.log($nodeHeight);
+			if( $nodeOffset < (winHeight + docScroll) && ($nodeOffset + $nodeHeight) > docScroll ){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+		function showImg($node){
+			$node.attr("src", $node.attr("data-src"));
+			$node.addClass("show");
+		}
+
+	</script>
+</body>
+</html>
